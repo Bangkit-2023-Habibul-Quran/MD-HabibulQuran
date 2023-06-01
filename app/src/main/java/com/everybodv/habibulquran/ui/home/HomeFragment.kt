@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.HijaiyahDataSource
+import com.everybodv.habibulquran.data.model.SurahFakeDataSource
 import com.everybodv.habibulquran.data.model.TadarusFakeDataSource
 import com.everybodv.habibulquran.databinding.FragmentHomeBinding
 import com.everybodv.habibulquran.ui.makhraj.MakhrajMenuActivity
+import com.everybodv.habibulquran.ui.tadarus.TadarusMenuActivity
 import com.everybodv.habibulquran.utils.addOnBackPressedCallbackWithInterval
 import com.everybodv.habibulquran.utils.setSafeOnClickListener
 import com.everybodv.habibulquran.utils.showToast
@@ -29,7 +31,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val hijaiyahList = HijaiyahDataSource.hijaiyahs
-    private val tadarusList = TadarusFakeDataSource.tadarusHome
+    private val tadarusList = SurahFakeDataSource.surah
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,6 +73,11 @@ class HomeFragment : Fragment() {
 
         binding.btnShowMakhraj.setSafeOnClickListener {
             val intent = Intent(activity, MakhrajMenuActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnShowTadarus.setSafeOnClickListener {
+            val intent = Intent(activity, TadarusMenuActivity::class.java)
             startActivity(intent)
         }
 

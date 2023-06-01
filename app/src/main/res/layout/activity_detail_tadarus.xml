@@ -4,6 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.tadarus.verse.detail.DetailTadarusActivity">
+    android:padding="8dp"
+    tools:context=".ui.makhraj.detail.DetailMakhrajActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="32dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_ayat_surah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="@string/dummy_ayat"
+                    android:textColor="@color/dark_purple_main"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/tv_pronounce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/purple_main"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/dummy_ayat_latin" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_circle_2"
+        android:contentDescription="@string/microphone"
+        android:src="@drawable/ic_mic_24"
+        app:layout_constraintBottom_toTopOf="@id/tv_click_mic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_circle"
+        android:contentDescription="@string/play_hijaiyah_letter"
+        android:src="@drawable/ic_play_arrow_40"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_click_mic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/press_mic_ayat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

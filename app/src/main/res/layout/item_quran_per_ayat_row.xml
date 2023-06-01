@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rvTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff5f5f5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_num_ayat"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ayat_circle_bg"
+            android:backgroundTint="@color/purple_main"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_num_ayat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="2"
+                android:textColor="@android:color/white"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_play_ayat"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/button_circle_2"
+            android:src="@drawable/ic_play_arrow_24"
+            app:tint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btn_stop_ayat"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_circle"
+            android:src="@drawable/ic_stop_24"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_ayat_quran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/dummy_ayat"
+        android:textColor="@color/dark_purple_main"
+        android:textDirection="rtl"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvTop" />
+
+    <TextView
+        android:id="@+id/tv_pronounce_quran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="11sp"
+        android:text="@string/dummy_ayat_latin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ayat_quran" />
+
+    <TextView
+        android:id="@+id/tv_arti_quran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Tidakkah engkau (Nabi Muhammad) memperhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah?"
+        android:textColor="@color/purple_main"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_pronounce_quran"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pronounce_quran" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

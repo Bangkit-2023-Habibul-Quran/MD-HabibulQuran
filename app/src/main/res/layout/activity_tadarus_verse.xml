@@ -4,6 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".ui.tadarus.verse.TadarusVerseActivity">
+
+    <TextView
+        android:id="@+id/tv_surah_verse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppinsbold"
+        android:text="@string/surah"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_progress_verse"
+        app:layout_constraintStart_toStartOf="@+id/tv_surah_verse"
+        app:layout_constraintTop_toTopOf="@+id/tv_progress_verse" />
+
+    <TextView
+        android:id="@+id/tv_progress_verse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/makhraj_progress_dummy"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/progressBar2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_surah_verse" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_verse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        tools:listitem="@layout/item_tadarus_ayat_card"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,7 @@
     <string name="desc_menu_3">Tilawah, murojaah dan murrotal di dalam satu aplikasi.</string>
     <string name="on_boarding">On Boarding</string>
     <string name="start">Mulai</string>
-    
+
     <string name="press_again">Tekan dua kali untuk keluar</string>
     <string name="makhraj_progress">Makhraj Progress</string>
     <string name="tadarus_progress">Tadarus Progress</string>
@@ -54,6 +54,7 @@
     <string name="microphone">Microphone</string>
     <string name="play_hijaiyah_letter">Play hijaiyah letter</string>
     <string name="press_mic">Tekan mikrofon dan ucapkan huruf diatas</string>
+    <string name="press_mic_ayat">Tekan mikrofon dan ucapkan ayat diatas</string>
 
     <string name="email_reset_send">Link verifikasi telah dikirimkan. Silahkan cek email anda.</string>
     <string name="email_dummy">user@mail.com</string>
@@ -67,4 +68,18 @@
     <string name="profile_picture">Profile picture</string>
     <string name="edit_profile">Edit Profil</string>
     <string name="gender_female">Perempuan</string>
+    <string name="number_ayat_dummy">25</string>
+    <string name="dummy_ayat">اَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِاَصْحٰبِ الْفِيْلِۗ</string>
+    <string name="dummy_ayat_latin">Alam tara kaifa fa‘ala rabbuka bi\'aṣḥābil-fīl(i).</string>
+    <string name="dummy_arti">(Pembuka)</string>
+    <string name="dummy_ayat_surah">· 7 Ayat</string>
+    <string name="ayat_surah">· %d Ayat</string>
+    <string name="tes_pelafalan">Tes pelafalan per ayat dengan teknologi Artificial Intelligence.</string>
+    <string name="profile_pict">Foto Profil</string>
+    <string name="choose_photo">Pilih foto</string>
+    <string name="date_picker">Date picker</string>
+    <string name="birthdate">Tanggal Lahir</string>
+    <string name="masukkan_tanggal_lahir">Masukkan tanggal lahir</string>
+    <string name="save_changes">Simpan Perubahan</string>
+    <string name="choose_ayat">Pilih ayat</string>
 </resources>
