@@ -55,7 +55,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_record_recite"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal|bottom"
@@ -69,14 +69,14 @@
         app:tint="@color/white" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btn_play_sound"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_circle"
         android:contentDescription="@string/play_hijaiyah_letter"
         android:src="@drawable/ic_play_arrow_40"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_record_recite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:tint="@color/white" />

@@ -6,6 +6,7 @@
     android:layout_marginVertical="4dp"
     android:elevation="4dp"
     app:cardCornerRadius="8dp"
+    android:layout_marginHorizontal="8dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tv_surah_num"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppinsbold"
@@ -45,10 +47,11 @@
             app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
 
         <TextView
-            android:id="@+id/tv_surah_diturunkan"
+            android:id="@+id/tv_surah_in_arab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Makiyyah"
+            android:text="الانسان"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/tv_surah"
             app:layout_constraintTop_toBottomOf="@+id/tv_surah" />
 
@@ -57,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:visibility="gone"
             android:text="@string/dummy_arti"
             app:layout_constraintBottom_toBottomOf="@+id/tv_surah"
             app:layout_constraintStart_toEndOf="@+id/tv_surah"
@@ -68,9 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@string/dummy_ayat_surah"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_surah_diturunkan"
-            app:layout_constraintStart_toEndOf="@+id/tv_surah_diturunkan"
-            app:layout_constraintTop_toTopOf="@+id/tv_surah_diturunkan" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_surah_in_arab"
+            app:layout_constraintStart_toEndOf="@+id/tv_surah_in_arab"
+            app:layout_constraintTop_toTopOf="@+id/tv_surah_in_arab" />
 
         <ImageView
             android:layout_width="wrap_content"

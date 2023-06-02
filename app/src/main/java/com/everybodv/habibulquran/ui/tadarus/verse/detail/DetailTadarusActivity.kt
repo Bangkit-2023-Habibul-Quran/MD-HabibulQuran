@@ -6,7 +6,9 @@ import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.SurahAyat
 import com.everybodv.habibulquran.data.model.SurahFakeDataSource
 import com.everybodv.habibulquran.databinding.ActivityDetailTadarusBinding
+import com.everybodv.habibulquran.ui.utility.ReciteIncorrectDialogFragment
 import com.everybodv.habibulquran.utils.Const
+import com.everybodv.habibulquran.utils.setSafeOnClickListener
 
 class DetailTadarusActivity : AppCompatActivity() {
 
@@ -24,6 +26,11 @@ class DetailTadarusActivity : AppCompatActivity() {
         binding.apply {
             tvAyatSurah.text = detail.ayat
             tvPronounce.text = detail.latin
+        }
+
+        binding.btnRecordRecite.setSafeOnClickListener {
+            val dialog = ReciteIncorrectDialogFragment()
+            dialog.show(supportFragmentManager, Const.INCORRECT_DIALOG)
         }
     }
 

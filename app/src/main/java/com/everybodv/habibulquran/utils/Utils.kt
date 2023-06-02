@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentActivity
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 
 fun View.setSafeOnClickListener(onSafeClick: (View) -> Unit) {
@@ -69,4 +71,8 @@ object ActivityUtils {
                 fragmentActivity.finishAffinity()
             }
         }
+}
+
+class AppExecutors {
+    val diskIO: Executor = Executors.newSingleThreadExecutor()
 }

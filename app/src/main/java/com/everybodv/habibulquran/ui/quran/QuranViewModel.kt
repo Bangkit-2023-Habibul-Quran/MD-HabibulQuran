@@ -3,11 +3,19 @@ package com.everybodv.habibulquran.ui.quran
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.everybodv.habibulquran.data.QuranRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class QuranViewModel : ViewModel() {
+@HiltViewModel
+class QuranViewModel @Inject constructor(
+    private val quranRepository: QuranRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is quran Fragment"
-    }
-    val text: LiveData<String> = _text
+    val listSurah = quranRepository.listSurah
+    val listHijaiyah = quranRepository.listHijaiyah
+    val isLoading = quranRepository.isLoading
+
+    fun getAllSurah() = quranRepository.getAllSurah()
+    fun getAllHijaiyah() = quranRepository.getAllHijaiyah()
 }
