@@ -14,5 +14,6 @@ class Const {
         const val LOGIN = "login_auth"
         const val TOKEN = "token"
         const val EXTRA_SURAH = "ExtraSurah"
+        const val FRAGMENT_KEY = "FragmentKey"
     }
 }

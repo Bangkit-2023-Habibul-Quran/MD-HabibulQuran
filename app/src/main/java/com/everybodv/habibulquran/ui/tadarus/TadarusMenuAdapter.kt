@@ -6,20 +6,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.everybodv.habibulquran.data.model.Quran
+import com.everybodv.habibulquran.data.remote.response.Data
 import com.everybodv.habibulquran.databinding.ItemHijaiyahCardBinding
 import com.everybodv.habibulquran.databinding.ItemTadarusMenuCardBinding
 import com.everybodv.habibulquran.ui.tadarus.verse.TadarusVerseActivity
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.setSafeOnClickListener
 
-class TadarusMenuAdapter(private val listSurah: List<Quran>) : RecyclerView.Adapter<TadarusMenuAdapter.ViewHolder>() {
+class TadarusMenuAdapter(private val listSurah: List<Data>) : RecyclerView.Adapter<TadarusMenuAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemTadarusMenuCardBinding): RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
-        fun bind(item: Quran) {
+        fun bind(item: Data) {
             with(binding) {
-                tvSurahTadarus.text = item.titleSurah
-                tvAyatFinished.text = " 0/${item.totalAyat} ayat selesai"
+                tvSurahTadarus.text = item.name.transliteration?.id
+                tvAyatFinished.text = " 0/${item.numberOfVerses} ayat selesai"
             }
             itemView.setSafeOnClickListener {
                 with(it.context) {

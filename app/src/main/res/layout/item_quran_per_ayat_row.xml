@@ -68,36 +68,30 @@
 
     <TextView
         android:id="@+id/tv_ayat_quran"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:lineSpacingExtra="8dp"
         android:text="@string/dummy_ayat"
         android:textColor="@color/dark_purple_main"
+        android:fontFamily="@font/kemenag"
         android:textDirection="rtl"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rvTop" />
 
     <TextView
-        android:id="@+id/tv_pronounce_quran"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="11sp"
-        android:visibility="gone"
-        android:text="@string/dummy_ayat_latin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ayat_quran" />
-
-    <TextView
         android:id="@+id/tv_arti_quran"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
         android:text="Tidakkah engkau (Nabi Muhammad) memperhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah?"
         android:textColor="@color/purple_main"
         android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_pronounce_quran"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pronounce_quran" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_ayat_quran"
+        app:layout_constraintStart_toStartOf="@+id/tv_ayat_quran"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ayat_quran" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,16 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.everybodv.habibulquran.data.model.Quran
 import com.everybodv.habibulquran.data.model.SurahAyat
+import com.everybodv.habibulquran.data.remote.response.VersesItem
 import com.everybodv.habibulquran.databinding.ItemTadarusAyatCardBinding
 import com.everybodv.habibulquran.ui.tadarus.TadarusMenuAdapter
 import com.everybodv.habibulquran.ui.tadarus.verse.detail.DetailTadarusActivity
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.setSafeOnClickListener
 
-class TadarusVerseAdapter(private val listAyat: List<SurahAyat>) : RecyclerView.Adapter<TadarusVerseAdapter.ViewHolder>() {
+class TadarusVerseAdapter(private val listAyat: List<VersesItem>) : RecyclerView.Adapter<TadarusVerseAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemTadarusAyatCardBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SurahAyat) {
-            binding.tvAyat.text = item.numAyat.toString()
+        fun bind(item: VersesItem) {
+            binding.tvAyat.text = item.number.inSurah.toString()
 
             itemView.setSafeOnClickListener {
                 with(it.context) {

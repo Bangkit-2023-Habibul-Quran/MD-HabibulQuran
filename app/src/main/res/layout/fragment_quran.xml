@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ui.quran.QuranFragment">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimer2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_surah_shimmer" />
+            <include layout="@layout/item_surah_shimmer" />
+            <include layout="@layout/item_surah_shimmer" />
+            <include layout="@layout/item_surah_shimmer" />
+            <include layout="@layout/item_surah_shimmer" />
+            <include layout="@layout/item_surah_shimmer" />
+            <include layout="@layout/item_surah_shimmer" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_surah"
         android:layout_width="match_parent"

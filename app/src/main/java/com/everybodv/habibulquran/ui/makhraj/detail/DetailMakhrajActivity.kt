@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.Hijaiyah
+import com.everybodv.habibulquran.data.remote.response.DataItem
 import com.everybodv.habibulquran.databinding.ActivityDetailMakhrajBinding
 import com.everybodv.habibulquran.ui.utility.ReciteCorrectDialogFragment
 import com.everybodv.habibulquran.utils.Const
@@ -23,10 +24,10 @@ class DetailMakhrajActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
 
-        val detail = intent.getParcelableExtra<Hijaiyah>(Const.MAKHRAJ) as Hijaiyah
+        val detail = intent.getParcelableExtra<DataItem>(Const.MAKHRAJ) as DataItem
 
-        binding.tvHijaiyahLetter.text = detail.letter
-        binding.tvPronounce.text = detail.pronounce
+        binding.tvHijaiyahLetter.text = detail.arabic
+        binding.tvPronounce.text = detail.pronounciation
 
         binding.btnRecordMakhraj.setSafeOnClickListener {
             val dialog = ReciteCorrectDialogFragment()

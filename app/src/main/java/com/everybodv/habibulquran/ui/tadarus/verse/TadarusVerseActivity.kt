@@ -8,6 +8,8 @@ import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.Quran
 import com.everybodv.habibulquran.data.model.SurahAyat
 import com.everybodv.habibulquran.data.model.SurahFakeDataSource
+import com.everybodv.habibulquran.data.remote.response.Data
+import com.everybodv.habibulquran.data.remote.response.VersesItem
 import com.everybodv.habibulquran.databinding.ActivityTadarusVerseBinding
 import com.everybodv.habibulquran.utils.Const
 
@@ -22,21 +24,23 @@ class TadarusVerseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.choose_ayat)
 
-        val ayatDetail = intent.getParcelableExtra<Quran>(Const.EXTRA_VERSE) as Quran
+        val ayatDetail = intent.getParcelableExtra<Data>(Const.EXTRA_VERSE) as Data
 
-        val listAyat = ArrayList<SurahAyat>()
-        ayatDetail.surahAyat.forEach {
-            val surah = SurahAyat(it.numAyat, it.ayat, it.latin, it.translate)
-            listAyat.add(surah)
+        val listAyat = ArrayList<VersesItem>()
+        ayatDetail.verses!!.forEach {
+            val ayat = VersesItem(it.number, it.translation, it.text, it.audio)
+            listAyat.add(ayat)
         }
+
+//        val ayatList = listAyat.sortedByDescending { it.number.inSurah }
 
         binding.rvVerse.apply {
             layoutManager = GridLayoutManager(this@TadarusVerseActivity, 4, LinearLayoutManager.VERTICAL, false)
             adapter = TadarusVerseAdapter(listAyat)
         }
 
-        binding.tvProgressVerse.text = "0/${ayatDetail.totalAyat}"
-        binding.tvSurahVerse.text = ayatDetail.titleSurah
+        binding.tvProgressVerse.text = "0/${ayatDetail.numberOfVerses}"
+        binding.tvSurahVerse.text = ayatDetail.name.transliteration?.id
     }
 
     override fun onSupportNavigateUp(): Boolean {

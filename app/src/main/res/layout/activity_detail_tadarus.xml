@@ -35,18 +35,11 @@
                     android:id="@+id/tv_ayat_surah"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppinsbold"
+                    android:lineSpacingExtra="8dp"
+                    android:fontFamily="@font/kemenag"
                     android:text="@string/dummy_ayat"
                     android:textColor="@color/dark_purple_main"
                     android:textSize="30sp" />
-
-                <TextView
-                    android:id="@+id/tv_pronounce"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/purple_main"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/dummy_ayat_latin" />
 
             </LinearLayout>
 

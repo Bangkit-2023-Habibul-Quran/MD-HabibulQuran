@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.Quran
 import com.everybodv.habibulquran.data.model.Tadarus
+import com.everybodv.habibulquran.data.remote.response.Data
 import com.everybodv.habibulquran.databinding.ItemHijaiyahCardBinding
 import com.everybodv.habibulquran.databinding.ItemTadarusHomeCardBinding
 import com.everybodv.habibulquran.ui.tadarus.TadarusMenuActivity
@@ -15,12 +16,12 @@ import com.everybodv.habibulquran.ui.tadarus.verse.TadarusVerseActivity
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.setSafeOnClickListener
 
-class HomeTadarusAdapter(private val listTadarus: List<Quran>): RecyclerView.Adapter<HomeTadarusAdapter.ViewHolder>() {
+class HomeTadarusAdapter(private val listTadarus: List<Data>): RecyclerView.Adapter<HomeTadarusAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemTadarusHomeCardBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Quran) {
+        fun bind(item: Data) {
             with(binding) {
-                tvSurahName.text = item.titleSurah
-                tvTotalAyat.text = "Total ayat: ${item.totalAyat}"
+                tvSurahName.text = item.name.transliteration?.id
+                tvTotalAyat.text = "Total ayat: ${item.numberOfVerses}"
             }
             itemView.setSafeOnClickListener {
                 with(it.context) {
@@ -45,5 +46,5 @@ class HomeTadarusAdapter(private val listTadarus: List<Quran>): RecyclerView.Ada
         holder.bind(tadarus)
     }
 
-    override fun getItemCount(): Int = listTadarus.size
+    override fun getItemCount(): Int = 3
 }

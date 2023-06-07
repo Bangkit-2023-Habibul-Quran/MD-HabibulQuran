@@ -4,7 +4,6 @@ import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-@Parcelize
 data class SurahResponse(
 
 	@field:SerializedName("code")
@@ -21,13 +20,13 @@ data class SurahResponse(
 
 	@field:SerializedName("status")
 	val status: String
-) : Parcelable
+)
 
 @Parcelize
 data class Translation(
 
 	@field:SerializedName("en")
-	val en: String,
+	val en: String? = null,
 
 	@field:SerializedName("id")
 	val id: String
@@ -37,7 +36,7 @@ data class Translation(
 data class Text(
 
 	@field:SerializedName("transliteration")
-	val transliteration: Transliteration,
+	val transliteration: Transliteration? = null,
 
 	@field:SerializedName("arab")
 	val arab: String
@@ -50,7 +49,7 @@ data class Name(
 	val jsonMemberShort: String,
 
 	@field:SerializedName("transliteration")
-	val transliteration: Transliteration
+	val transliteration: Transliteration? = null
 ) : Parcelable
 
 @Parcelize
@@ -60,7 +59,7 @@ data class VersesItem(
 	val number: Number,
 
 	@field:SerializedName("translation")
-	val translation: Translation,
+	val translation: Translation? = null,
 
 	@field:SerializedName("text")
 	val text: Text,
@@ -92,20 +91,20 @@ data class Data(
 	val name: Name,
 
 	@field:SerializedName("preBismillah")
-	val preBismillah: PreBismillah,
+	val preBismillah: PreBismillah? = null,
 
 	@field:SerializedName("verses")
-	val verses: List<VersesItem>
+	val verses: List<VersesItem>? = null
 ) : Parcelable
 
 @Parcelize
 data class Transliteration(
 
 	@field:SerializedName("en")
-	val en: String,
+	val en: String? = null,
 
 	@field:SerializedName("id")
-	val id: String
+	val id: String? = null
 ) : Parcelable
 
 @Parcelize

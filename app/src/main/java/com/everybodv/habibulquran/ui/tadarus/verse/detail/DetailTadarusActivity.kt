@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.SurahAyat
 import com.everybodv.habibulquran.data.model.SurahFakeDataSource
+import com.everybodv.habibulquran.data.remote.response.VersesItem
 import com.everybodv.habibulquran.databinding.ActivityDetailTadarusBinding
 import com.everybodv.habibulquran.ui.utility.ReciteIncorrectDialogFragment
 import com.everybodv.habibulquran.utils.Const
@@ -21,12 +22,9 @@ class DetailTadarusActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.tes_tadarus)
 
-        val detail = intent.getParcelableExtra<SurahAyat>(Const.EXTRA_VERSE_DETAIL) as SurahAyat
+        val detail = intent.getParcelableExtra<VersesItem>(Const.EXTRA_VERSE_DETAIL) as VersesItem
 
-        binding.apply {
-            tvAyatSurah.text = detail.ayat
-            tvPronounce.text = detail.latin
-        }
+        binding.tvAyatSurah.text = detail.text.arab
 
         binding.btnRecordRecite.setSafeOnClickListener {
             val dialog = ReciteIncorrectDialogFragment()

@@ -17,10 +17,16 @@ interface QuranApiService {
     @GET("surat")
     fun getAllSurah(): Call<SurahResponse>
 
+    @GET("listsurat")
+    fun getListSurah(): Call<SurahResponse>
+
+    @GET("tes")
+    fun getTadarusTest(): Call<SurahResponse>
+
     @GET("surat/{suratId}")
-    fun getSurahById(
+    fun getAyatBySurahId(
         @Path("suratId") suratId: Int
-    ): Call<Data>
+    ): Call<SurahByIdResponse>
 
     @GET("surat/{suratId}/{ayatId}")
     fun getAyatById(

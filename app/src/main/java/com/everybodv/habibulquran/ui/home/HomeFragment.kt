@@ -6,18 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
-import com.everybodv.habibulquran.data.model.HijaiyahDataSource
 import com.everybodv.habibulquran.data.model.SurahFakeDataSource
-import com.everybodv.habibulquran.data.model.TadarusFakeDataSource
 import com.everybodv.habibulquran.databinding.FragmentHomeBinding
 import com.everybodv.habibulquran.ui.makhraj.MakhrajMenuActivity
+import com.everybodv.habibulquran.ui.makhraj.MakhrajViewModel
+import com.everybodv.habibulquran.ui.quran.QuranViewModel
 import com.everybodv.habibulquran.ui.tadarus.TadarusMenuActivity
+import com.everybodv.habibulquran.utils.ViewModelFactory
 import com.everybodv.habibulquran.utils.addOnBackPressedCallbackWithInterval
 import com.everybodv.habibulquran.utils.setSafeOnClickListener
 import com.everybodv.habibulquran.utils.showToast
@@ -30,7 +31,6 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val hijaiyahList = HijaiyahDataSource.hijaiyahs
     private val tadarusList = SurahFakeDataSource.surah
 
     override fun onCreateView(
@@ -38,32 +38,70 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity().application)
+        val makhrajViewModel : MakhrajViewModel by viewModels { factory }
+        val quranViewModel: QuranViewModel by viewModels { factory }
+
         val layout = GridLayoutManager(requireActivity(), 2, LinearLayoutManager.HORIZONTAL, false)
 
-        binding.rvMakhraj.apply {
-            layoutManager = layout
-            adapter = HomeMakhrajAdapter(hijaiyahList)
+        makhrajViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.rvMakhraj.visibility = View.GONE
+                binding.shimmer.apply {
+                    visibility = View.VISIBLE
+                    startShimmerAnimation()
+                }
+            } else {
+                binding.rvMakhraj.visibility = View.VISIBLE
+                binding.shimmer.apply {
+                    stopShimmerAnimation()
+                    visibility = View.GONE
+                }
+            }
         }
 
-        binding.rvTadarus.apply {
-            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = HomeTadarusAdapter(tadarusList)
+
+        makhrajViewModel.getAllHijaiyah()
+        makhrajViewModel.listHijaiyah.observe(viewLifecycleOwner) { listHijaiyah ->
+            val hijaiyahShuffled = listHijaiyah.shuffled()
+            binding.rvMakhraj.apply {
+                layoutManager = layout
+                adapter = HomeMakhrajAdapter(hijaiyahShuffled)
+            }
+        }
+
+        quranViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.rvTadarus.visibility = View.GONE
+                binding.shimmerTadarus.apply {
+                    visibility = View.VISIBLE
+                    startShimmerAnimation()
+                }
+            } else {
+                binding.rvTadarus.visibility = View.VISIBLE
+                binding.shimmerTadarus.apply {
+                    stopShimmerAnimation()
+                    visibility = View.GONE
+                }
+            }
+        }
+
+        quranViewModel.getTadarusTest()
+        quranViewModel.listSurahTest.observe(viewLifecycleOwner) { listSurah ->
+            val surahShuffled = listSurah.shuffled()
+            binding.rvTadarus.apply {
+                layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+                adapter = HomeTadarusAdapter(surahShuffled)
+            }
         }
 
         binding.ivMakhraj.setSafeOnClickListener {

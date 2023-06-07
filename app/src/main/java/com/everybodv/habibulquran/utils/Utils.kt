@@ -72,7 +72,3 @@ object ActivityUtils {
             }
         }
 }
-
-class AppExecutors {
-    val diskIO: Executor = Executors.newSingleThreadExecutor()
-}

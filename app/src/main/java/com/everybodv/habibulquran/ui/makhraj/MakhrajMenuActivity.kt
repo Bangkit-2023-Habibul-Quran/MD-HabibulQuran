@@ -2,16 +2,20 @@ package com.everybodv.habibulquran.ui.makhraj
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.HijaiyahDataSource
 import com.everybodv.habibulquran.databinding.ActivityMakhrajMenuBinding
+import com.everybodv.habibulquran.ui.quran.QuranViewModel
+import com.everybodv.habibulquran.utils.ViewModelFactory
+import com.everybodv.habibulquran.utils.showLoading
 
 class MakhrajMenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMakhrajMenuBinding
-    private val listHijaiyah = HijaiyahDataSource.hijaiyahs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +25,21 @@ class MakhrajMenuActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.belajar_makhraj)
 
-        binding.rvMakhrajMenu.apply {
-            layoutManager = GridLayoutManager(this@MakhrajMenuActivity, 4, LinearLayoutManager.VERTICAL, false)
-            adapter = MakhrajMenuAdapter(listHijaiyah)
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(application)
+        val makhrajViewModel : MakhrajViewModel by viewModels { factory }
+
+        makhrajViewModel.isLoading.observe(this) { isLoading ->
+            showLoading(binding.loadingMakhraj, isLoading)
         }
+        makhrajViewModel.getAllHijaiyah()
+        makhrajViewModel.listHijaiyah.observe(this) { listHijaiyah ->
+            binding.rvMakhrajMenu.apply {
+                layoutManager = GridLayoutManager(this@MakhrajMenuActivity, 4, LinearLayoutManager.VERTICAL, false)
+                adapter = MakhrajMenuAdapter(listHijaiyah)
+            }
+        }
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

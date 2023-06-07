@@ -11,9 +11,9 @@ class DetailSurahAdapter(private val listAyat: List<VersesItem>): RecyclerView.A
     inner class ViewHolder(private val binding: ItemQuranPerAyatRowBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: VersesItem) {
             with(binding) {
-                tvNumAyat.text = item.number.toString()
+                tvNumAyat.text = item.number.inSurah.toString()
                 tvAyatQuran.text = item.text.arab
-                tvArtiQuran.text = item.translation.id
+                tvArtiQuran.text = item.translation?.id
             }
         }
     }

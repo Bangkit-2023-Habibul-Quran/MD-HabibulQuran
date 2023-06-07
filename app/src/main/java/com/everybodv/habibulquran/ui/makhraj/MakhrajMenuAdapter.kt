@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.everybodv.habibulquran.data.model.Hijaiyah
+import com.everybodv.habibulquran.data.remote.response.DataItem
 import com.everybodv.habibulquran.databinding.ItemHijaiyahCardBinding
 import com.everybodv.habibulquran.ui.makhraj.detail.DetailMakhrajActivity
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.setSafeOnClickListener
 
-class MakhrajMenuAdapter(private val listHijaiyah: List<Hijaiyah>) :
+class MakhrajMenuAdapter(private val listHijaiyah: List<DataItem>) :
     RecyclerView.Adapter<MakhrajMenuAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemHijaiyahCardBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Hijaiyah) {
+        fun bind(item: DataItem) {
             with(binding) {
-                tvHijaiyah.text = item.letter
+                tvHijaiyah.text = item.arabic
             }
             itemView.setSafeOnClickListener {
                 with(it.context) {

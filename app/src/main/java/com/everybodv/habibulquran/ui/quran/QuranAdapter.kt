@@ -15,7 +15,7 @@ class QuranAdapter(private val listSurah: List<Data>): RecyclerView.Adapter<Qura
         fun bind(item: Data) {
             with(binding) {
                 tvSurahNum.text = item.number.toString()
-                tvSurah.text = item.name.transliteration.id
+                tvSurah.text = item.name.transliteration?.id
                 tvAyat.text = "${item.numberOfVerses} ayat"
                 tvSurahInArab.text = item.name.jsonMemberShort
             }
