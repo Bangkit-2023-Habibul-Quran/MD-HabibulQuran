@@ -1,5 +1,7 @@
 package com.everybodv.habibulquran.ui.makhraj.detail
 
+import android.media.AudioManager
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.everybodv.habibulquran.R
@@ -13,6 +15,7 @@ import com.everybodv.habibulquran.utils.setSafeOnClickListener
 class DetailMakhrajActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailMakhrajBinding
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +32,32 @@ class DetailMakhrajActivity : AppCompatActivity() {
         binding.tvHijaiyahLetter.text = detail.arabic
         binding.tvPronounce.text = detail.pronounciation
 
+        mediaPlayer = MediaPlayer()
+
         binding.btnRecordMakhraj.setSafeOnClickListener {
+            if (mediaPlayer.isPlaying) mediaPlayer.stop()
             val dialog = ReciteCorrectDialogFragment()
             dialog.show(supportFragmentManager, Const.CORRECT_DIALOG)
         }
+
+        binding.btnPlayMakhraj.setOnClickListener {
+            val audioUrl = detail.audio
+            mediaPlayer.reset()
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+            try {
+                mediaPlayer.setDataSource(audioUrl)
+                mediaPlayer.prepare()
+                mediaPlayer.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mediaPlayer.isPlaying) mediaPlayer.stop()
+        mediaPlayer.release()
     }
 
     override fun onSupportNavigateUp(): Boolean {
