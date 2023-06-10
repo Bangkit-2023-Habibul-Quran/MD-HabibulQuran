@@ -82,4 +82,21 @@
     <string name="masukkan_tanggal_lahir">Masukkan tanggal lahir</string>
     <string name="save_changes">Simpan Perubahan</string>
     <string name="choose_ayat">Pilih ayat</string>
+    <string name="retry">Ulangi</string>
+    <string name="continu">Lanjutkan</string>
+    <string name="retry_caps">ULANGI</string>
+    <string name="success_msg">Pelafalan kamu sudah baik dan benar. Yuk, lanjut belajar tahap selanjutnya!</string>
+    <string name="incorrect_msg">Pelafalan kamu masih perlu diperbaiki. Silahkan ulangi lagi ya!</string>
+    <string name="not_good">Belum Sempurna</string>
+    <string name="very_good">Sangat Baik</string>
+    <string name="one_rating_title">Belum Sempurna</string>
+    <string name="one_rating_desc">Bacaan kamu masih perlu banyak perbaikan. Silahkan ulangi lagi ya.</string>
+    <string name="two_star_title">Kurang Sempurna</string>
+    <string name="two_star_desc">Pelafalan kamu perlu sedikit diperbaiki. Silahkan ulangi dulu ya.</string>
+    <string name="three_star_title">Baik</string>
+    <string name="three_star_desc">Pelafalan kamu sudah baik namun masih bisa lebih baik lagi. Tetap semangat!</string>
+    <string name="four_star_title">Sangat baik!</string>
+    <string name="four_star_desc">Pelafalan kamu sudah sangat baik. Yuk belajar tahap selanjutnya!</string>
+    <string name="five_star_title">Sempurna!</string>
+    <string name="five_star_desc">Selamat! pelafalan kamu sudah sempurna. Yuk coba tahap selanjutnya!</string>
 </resources>

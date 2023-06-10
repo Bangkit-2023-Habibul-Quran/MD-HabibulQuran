@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:text="Sempurna"
+        android:textColor="@color/purple_main"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationFiveStar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/tv_correct"
+        app:layout_constraintStart_toStartOf="@+id/tv_correct"
+        app:layout_constraintTop_toBottomOf="@+id/tv_correct"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_speed="3"
+        app:lottie_rawRes="@raw/five_star" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationFourStar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tv_correct"
+        app:layout_constraintStart_toStartOf="@+id/tv_correct"
+        app:layout_constraintTop_toBottomOf="@+id/tv_correct"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_speed="3"
+        app:lottie_rawRes="@raw/four_star" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationThreeStar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_correct"
+        app:layout_constraintStart_toStartOf="@+id/tv_correct"
+        app:layout_constraintTop_toBottomOf="@+id/tv_correct"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_speed="2"
+        app:lottie_rawRes="@raw/three_star" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationTwoStar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tv_correct"
+        app:layout_constraintStart_toStartOf="@+id/tv_correct"
+        app:layout_constraintTop_toBottomOf="@+id/tv_correct"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_speed="1"
+        app:lottie_rawRes="@raw/two_star" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationOneStar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tv_correct"
+        app:layout_constraintStart_toStartOf="@+id/tv_correct"
+        app:layout_constraintTop_toBottomOf="@+id/tv_correct"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/one_star" />
+
+
+    <TextView
+        android:id="@+id/tv_desc_correct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Pelafalan kamu sudah sempurna. Yuk coba tahap selanjutnya!"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationFiveStar" />
+
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/purple_main"
+        android:text="Lanjutkan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_correct" />
+
+    <TextView
+        android:id="@+id/tv_retry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        tools:visibility="visible"
+        android:text="@string/retry_caps"
+        android:textColor="@color/purple_main"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_continue"
+        android:focusable="true" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -109,6 +109,11 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.ivTadarus.setSafeOnClickListener {
+            val intent = Intent(activity, TadarusMenuActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnShowMakhraj.setSafeOnClickListener {
             val intent = Intent(activity, MakhrajMenuActivity::class.java)
             startActivity(intent)

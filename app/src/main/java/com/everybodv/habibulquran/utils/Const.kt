@@ -15,5 +15,6 @@ class Const {
         const val TOKEN = "token"
         const val EXTRA_SURAH = "ExtraSurah"
         const val FRAGMENT_KEY = "FragmentKey"
+        const val AYAT_NUMBER = "AyatNumber"
     }
 }

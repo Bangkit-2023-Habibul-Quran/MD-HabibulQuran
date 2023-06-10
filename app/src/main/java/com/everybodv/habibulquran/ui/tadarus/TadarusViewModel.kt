@@ -1,5 +1,6 @@
 package com.everybodv.habibulquran.ui.tadarus
 
+import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.widget.ImageButton
@@ -27,13 +28,19 @@ class TadarusViewModel(private val quranRepository: QuranRepository) : ViewModel
             button.setImageResource(R.drawable.ic_stop_40)
             val audioUrl = audioSrc.audio.primary
             player.reset()
-            player.setAudioStreamType(AudioManager.STREAM_MUSIC)
+            player.setAudioAttributes(
+                AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build()
+            )
             try {
                 player.setDataSource(audioUrl)
                 player.prepare()
                 player.start()
             } catch (e: Exception) {
                 e.printStackTrace()
+                player.stop()
+                _isPlaying.postValue(false)
             }
             _isPlaying.postValue(true)
         }

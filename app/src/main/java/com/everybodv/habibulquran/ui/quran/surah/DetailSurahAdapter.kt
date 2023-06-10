@@ -5,15 +5,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.everybodv.habibulquran.data.remote.response.VersesItem
 import com.everybodv.habibulquran.databinding.ItemQuranPerAyatRowBinding
-import com.everybodv.habibulquran.utils.setSafeOnClickListener
 
 class DetailSurahAdapter(private val listAyat: List<VersesItem>): RecyclerView.Adapter<DetailSurahAdapter.ViewHolder>() {
-    inner class ViewHolder(private val binding: ItemQuranPerAyatRowBinding): RecyclerView.ViewHolder(binding.root) {
+    private lateinit var onButtonClickCallback: OnButtonClickCallback
+
+    fun setOnButtonClickCallback(onButtonClickCallback: OnButtonClickCallback) {
+        this.onButtonClickCallback = onButtonClickCallback
+    }
+
+    inner class ViewHolder(val binding: ItemQuranPerAyatRowBinding): RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: VersesItem) {
             with(binding) {
                 tvNumAyat.text = item.number.inSurah.toString()
                 tvAyatQuran.text = item.text.arab
                 tvArtiQuran.text = item.translation?.id
+
+                btnPlayAyat.setOnClickListener { btn ->
+                    onButtonClickCallback.onButtonPlayClicked(listAyat[adapterPosition])
+                }
+
+                btnStopAyat.setOnClickListener {
+                    onButtonClickCallback.onButtonStopClicked(listAyat[adapterPosition])
+                }
             }
         }
     }
@@ -32,4 +46,9 @@ class DetailSurahAdapter(private val listAyat: List<VersesItem>): RecyclerView.A
     }
 
     override fun getItemCount(): Int = listAyat.size
+
+    interface OnButtonClickCallback {
+        fun onButtonPlayClicked(versesItem: VersesItem)
+        fun onButtonStopClicked(versesItem: VersesItem)
+    }
 }

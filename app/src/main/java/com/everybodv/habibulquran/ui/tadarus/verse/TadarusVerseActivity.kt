@@ -1,7 +1,9 @@
 package com.everybodv.habibulquran.ui.tadarus.verse
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
@@ -31,8 +33,11 @@ class TadarusVerseActivity : AppCompatActivity() {
             val ayat = VersesItem(it.number, it.translation, it.text, it.audio)
             listAyat.add(ayat)
         }
-
-//        val ayatList = listAyat.sortedByDescending { it.number.inSurah }
+        val surahData = ayatDetail.number
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = prefs.edit()
+        editor.putInt(Const.AYAT_NUMBER, surahData)
+        editor.apply()
 
         binding.rvVerse.apply {
             layoutManager = GridLayoutManager(this@TadarusVerseActivity, 4, LinearLayoutManager.VERTICAL, false)
