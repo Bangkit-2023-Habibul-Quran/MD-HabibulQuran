@@ -25,6 +25,14 @@ fun showLoading(view: View, isLoading: Boolean) {
     view.visibility = if (isLoading) View.VISIBLE else View.GONE
 }
 
+fun hideContent(view: View) {
+    view.visibility = View.GONE
+}
+
+fun showContent(view: View) {
+    view.visibility = View.VISIBLE
+}
+
 fun FragmentActivity.addOnBackPressedCallbackWithInterval(
     millisToBack: Long,
     firstPressed: () -> Unit

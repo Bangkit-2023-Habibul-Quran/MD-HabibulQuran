@@ -99,4 +99,6 @@
     <string name="four_star_desc">Pelafalan kamu sudah sangat baik. Yuk belajar tahap selanjutnya!</string>
     <string name="five_star_title">Sempurna!</string>
     <string name="five_star_desc">Selamat! pelafalan kamu sudah sempurna. Yuk coba tahap selanjutnya!</string>
+
+    <string name="press_to_stop">Tekan tombol untuk berhenti merekam</string>
 </resources>

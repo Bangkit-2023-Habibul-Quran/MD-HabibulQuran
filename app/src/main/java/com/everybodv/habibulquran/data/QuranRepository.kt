@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.everybodv.habibulquran.data.remote.response.*
 import com.everybodv.habibulquran.data.remote.retrofit.AuthConfig
 import com.everybodv.habibulquran.data.remote.retrofit.QuranConfig
+import com.everybodv.habibulquran.data.remote.retrofit.QuranPredictConfig
 import com.everybodv.habibulquran.utils.AppExecutors
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.Event
@@ -189,6 +190,33 @@ class QuranRepository private constructor(
         return _listHijaiyah
     }
 
+    private val _tadarusPredictData = MutableLiveData<QuranPredictResponse>()
+    val tadarusPredictData: LiveData<QuranPredictResponse> = _tadarusPredictData
+
+    fun getTadarusPredict(audioFile: MultipartBody.Part, originalText: RequestBody): LiveData<QuranPredictResponse> {
+        _isLoading.value = true
+        QuranPredictConfig.getQuranPredictService().predictTadarus(audioFile, originalText)
+            .enqueue(object : Callback<QuranPredictResponse> {
+                override fun onResponse(
+                    call: Call<QuranPredictResponse>,
+                    response: Response<QuranPredictResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.isSuccessful) {
+                        _tadarusPredictData.postValue(response.body())
+                    } else {
+                        Log.e(Const.TAG_QURAN_REPO, "onFailure: ${response.message()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<QuranPredictResponse>, t: Throwable) {
+                    Log.e(Const.TAG_QURAN_REPO, "onFailure: ${t.message}")
+                }
+
+            })
+        return _tadarusPredictData
+    }
+
     private val login = MutableLiveData<LoginResponse>()
 
     private val _registerData = MutableLiveData<GeneralResponse>()
@@ -197,7 +225,7 @@ class QuranRepository private constructor(
     private val _loginData = MutableLiveData<User>()
     val loginData: LiveData<User> = _loginData
 
-    private val _isEnabled = MutableLiveData<Boolean>()
+    private val _isEnabled = MutableLiveData<Boolean>(true)
     val isEnabled: LiveData<Boolean> = _isEnabled
 
     private val _regMsg = MutableLiveData<Event<String>>()
