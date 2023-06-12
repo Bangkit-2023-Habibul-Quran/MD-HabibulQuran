@@ -35,11 +35,13 @@ interface AuthApiService {
     ): Call<GeneralResponse>
 
     @POST("forget")
+    @FormUrlEncoded
     fun forgotReset(
         @Field("email") email: String
     ): Call<GeneralResponse>
 
     @POST("verification")
+    @FormUrlEncoded
     fun verifyAccount(
         @Field("email") email: String
     ): Call<GeneralResponse>

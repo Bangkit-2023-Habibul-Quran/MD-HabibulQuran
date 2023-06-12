@@ -16,5 +16,9 @@ class Const {
         const val EXTRA_SURAH = "ExtraSurah"
         const val FRAGMENT_KEY = "FragmentKey"
         const val AYAT_NUMBER = "AyatNumber"
+        const val FILENAME_FORMAT = "dd-MMM-yyyy"
+        const val DEFAULT_GENDER = "Laki-laki"
+        const val FEMALE_GENDER = "Perempuan"
+        val emailPattern = Regex("[a-zA-Z0-9._]+@[a-z]+\\.+[a-z]+")
     }
 }

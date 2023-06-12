@@ -67,115 +67,120 @@ class DetailTadarusActivity : AppCompatActivity() {
         val btnRecord = binding.btnRecordRecite
 
         tadarusViewModel.isRecording.observe(this) { isRecording ->
-            if (!isRecording) {
-                btnRecord.setSafeOnClickListener {
-                    if (mediaPlayer.isPlaying) tadarusViewModel.forceStopAudio(mediaPlayer)
-                    player.stop()
-                    File(cacheDir, "audio.mp3").also {
-                        recorder.start(it)
-                        audioFile = it
+            btnRecord.apply {
+                if (!isRecording) {
+                    this.setOnClickListener {
+                        if (mediaPlayer.isPlaying) tadarusViewModel.forceStopAudio(mediaPlayer)
+                        player.stop()
+                        File(cacheDir, "audio.mp3").also {
+                            recorder.start(it)
+                            audioFile = it
+                        }
+                        tadarusViewModel.startRecording(this)
+                        showContent(binding.loadingRecord)
+                        hideContent(binding.btnPlaySound)
+                        binding.tvClickMic.text = getString(R.string.press_to_stop)
                     }
-                    tadarusViewModel.startRecording(btnRecord)
-                    showContent(binding.loadingRecord)
-                    hideContent(binding.btnPlaySound)
-                    binding.tvClickMic.text = getString(R.string.press_to_stop)
-                }
 
-            } else {
-                btnRecord.setSafeOnClickListener {
-                    if (mediaPlayer.isPlaying) tadarusViewModel.forceStopAudio(mediaPlayer)
+                } else {
+                    this.setOnClickListener {
+                        if (mediaPlayer.isPlaying) tadarusViewModel.forceStopAudio(mediaPlayer)
 
-                    recorder.stop()
-                    tadarusViewModel.stopRecording(btnRecord)
-                    hideContent(binding.loadingRecord)
-                    showContent(binding.btnPlaySound)
-                    binding.tvClickMic.text = getString(R.string.press_mic_ayat)
+                        recorder.stop()
+                        tadarusViewModel.stopRecording(this)
+                        hideContent(binding.loadingRecord)
+                        showContent(binding.btnPlaySound)
+                        binding.tvClickMic.text = getString(R.string.press_mic_ayat)
 
-                    if (audioFile != null) {
-                        val file = audioFile as File
-                        val reqAudio = file.asRequestBody("audio/mpeg".toMediaTypeOrNull())
-                        val audioMultiPart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                            "audio", file.name, reqAudio
-                        )
-                        val orginalText = detail.text.arab.toRequestBody("text/plain".toMediaType())
+                        if (audioFile != null) {
+                            val file = audioFile as File
+                            val reqAudio = file.asRequestBody("audio/mpeg".toMediaTypeOrNull())
+                            val audioMultiPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                                "file", file.name, reqAudio
+                            )
+                            val orginalText = detail.text.arab.toRequestBody("text/plain".toMediaType())
+                            val dialog = BottomSheetDialog(this@DetailTadarusActivity)
+                            bindingDialog = FragmentResultTadarusDialogBinding.inflate(layoutInflater)
 
-                        try {
-                            tadarusViewModel.isLoading.observe(this) { isLoading ->
-                                showLoading(binding.loadingForResult, isLoading)
+                            try {
+                                tadarusViewModel.isLoading.observe(this@DetailTadarusActivity) { isLoading ->
+                                    showLoading(binding.loadingForResult, isLoading)
 //                                val progressDialog = ProgressDialog(this@DetailTadarusActivity)
 //                                if (isLoading == true) {
 //                                    progressDialog.show()
 //                                } else {
 //                                    progressDialog.dismiss()
 //                                }
-                            }
-                            tadarusViewModel.getTadarusPredict(audioMultiPart, orginalText)
-                            tadarusViewModel.tadarusPredictResponse.observe(this) { response ->
-                                val dialog = BottomSheetDialog(this)
-                                bindingDialog = FragmentResultTadarusDialogBinding.inflate(layoutInflater)
+                                }
+                                tadarusViewModel.getTadarusPredict(audioMultiPart, orginalText)
 
-                                when (response.rating) {
-                                    1 -> {
-                                        bindingDialog.apply {
-                                            tvCorrect.text = getString(R.string.one_rating_title)
-                                            showContent(animationOneStar)
-                                            tvDescCorrect.text = getString(R.string.one_rating_desc)
-                                            btnContinue.apply {
-                                                text = getString(R.string.retry)
-                                                this.setSafeOnClickListener { dialog.dismiss() }
+                                tadarusViewModel.tadarusPredictResponse.observe(this@DetailTadarusActivity) { response ->
+                                    if (!response.error) {
+                                        when (response.rating) {
+                                            1 -> {
+                                                bindingDialog.apply {
+                                                    tvCorrect.text = getString(R.string.one_rating_title)
+                                                    showContent(animationOneStar)
+                                                    tvDescCorrect.text = getString(R.string.one_rating_desc)
+                                                    btnContinue.apply {
+                                                        text = getString(R.string.retry)
+                                                        this.setSafeOnClickListener { dialog.dismiss() }
+                                                    }
+                                                    hideContent(tvRetry)
+                                                }
                                             }
-                                            hideContent(tvRetry)
-                                        }
-                                    }
-                                    2 -> {
-                                        bindingDialog.apply {
-                                            tvCorrect.text = getString(R.string.two_star_title)
-                                            showContent(animationTwoStar)
-                                            tvDescCorrect.text = getString(R.string.two_star_desc)
-                                            btnContinue.apply {
-                                                text = getString(R.string.retry)
-                                                this.setSafeOnClickListener { dialog.dismiss() }
+                                            2 -> {
+                                                bindingDialog.apply {
+                                                    tvCorrect.text = getString(R.string.two_star_title)
+                                                    showContent(animationTwoStar)
+                                                    tvDescCorrect.text = getString(R.string.two_star_desc)
+                                                    btnContinue.apply {
+                                                        text = getString(R.string.retry)
+                                                        this.setSafeOnClickListener { dialog.dismiss() }
+                                                    }
+                                                    hideContent(tvRetry)
+                                                }
                                             }
-                                            hideContent(tvRetry)
+                                            3 -> {
+                                                bindingDialog.apply {
+                                                    tvCorrect.text = getString(R.string.three_star_title)
+                                                    showContent(animationThreeStar)
+                                                    tvDescCorrect.text = getString(R.string.three_star_desc)
+                                                }
+                                            }
+                                            4 -> {
+                                                bindingDialog.apply {
+                                                    tvCorrect.text = getString(R.string.four_star_title)
+                                                    showContent(animationFourStar)
+                                                    tvDescCorrect.text = getString(R.string.four_star_desc)
+                                                }
+                                            }
+                                            5 -> {
+                                                bindingDialog.apply {
+                                                    tvCorrect.text = getString(R.string.five_star_title)
+                                                    showContent(animationFiveStar)
+                                                    tvDescCorrect.text = getString(R.string.five_star_desc)
+                                                }
+                                            }
                                         }
-                                    }
-                                    3 -> {
-                                        bindingDialog.apply {
-                                            tvCorrect.text = getString(R.string.three_star_title)
-                                            showContent(animationThreeStar)
-                                            tvDescCorrect.text = getString(R.string.three_star_desc)
+                                        bindingDialog.tvRetry.setSafeOnClickListener {
+                                            dialog.dismiss()
                                         }
-                                    }
-                                    4 -> {
-                                        bindingDialog.apply {
-                                            tvCorrect.text = getString(R.string.four_star_title)
-                                            showContent(animationFourStar)
-                                            tvDescCorrect.text = getString(R.string.four_star_desc)
-                                        }
-                                    }
-                                    5 -> {
-                                        bindingDialog.apply {
-                                            tvCorrect.text = getString(R.string.five_star_title)
-                                            showContent(animationFiveStar)
-                                            tvDescCorrect.text = getString(R.string.five_star_desc)
-                                        }
+                                        dialog.setCancelable(false)
+                                        dialog.setContentView(bindingDialog.root)
+                                        dialog.show()
+                                    } else {
+                                        showToast(this@DetailTadarusActivity, "Gagal mengirimkan ke server")
                                     }
                                 }
-
-                                bindingDialog.tvRetry.setSafeOnClickListener {
-                                    dialog.dismiss()
-                                }
-
-                                dialog.setCancelable(false)
-                                dialog.setContentView(bindingDialog.root)
-                                dialog.show()
+                            } catch (e: Exception) {
+                                e.printStackTrace()
                             }
-                        } catch (e: Exception) {
-                            e.printStackTrace()
                         }
                     }
                 }
             }
+
         }
 
 

@@ -143,6 +143,19 @@
             app:layout_constraintEnd_toEndOf="@+id/btn_login"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
+        <TextView
+            android:id="@+id/tv_verif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/verification"
+            android:textColor="@color/purple_main"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

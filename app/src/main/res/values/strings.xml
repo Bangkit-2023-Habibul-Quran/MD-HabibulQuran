@@ -13,7 +13,7 @@
     <string name="Password">Password</string>
     <string name="new_to_app">Belum punya akun?</string>
     <string name="register">\u0020 Daftar</string>
-    <string name="register_btn">Register</string>
+    <string name="register_btn">Daftar</string>
     <string name="forgot">Lupa password?</string>
     <string name="reset_password">Reset Password</string>
     <string name="username">Username</string>
@@ -101,4 +101,28 @@
     <string name="five_star_desc">Selamat! pelafalan kamu sudah sempurna. Yuk coba tahap selanjutnya!</string>
 
     <string name="press_to_stop">Tekan tombol untuk berhenti merekam</string>
+    <string name="select_photo">Select photo</string>
+    <string name="pls_fill_auth">Silahkan isi kolom untuk melanjutkan</string>
+    <string name="pass_not_valid">Kata sandi harus memiliki setidaknya 8 karakter</string>
+    <string name="email_format_wrong">Format email salah</string>
+    <string name="pp_not_valid">Foto profil tidak boleh kosong</string>
+    <string name="email_is_taken">Email sudah dipakai</string>
+    <string name="register_success">Registrasi berhasil. Silahkan cek email anda untuk verifikasi sebelum login.</string>
+    <string name="email_not_registered">Email belum terdaftar</string>
+    <string name="auth_not_matched">Email dan password tidak sesuai</string>
+    <string name="login_success">Login berhasil. Selamat datang, </string>
+
+    <string name="session_end">Sesi anda berakhir, silahkan login ulang</string>
+    <string name="log_out">Keluar</string>
+    <string name="logout_ask">Apakah anda yakin ingin keluar? </string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="send_reset_link">Kirim link reset</string>
+    <string name="reset_instruction">Silahkan masukkan email yang digunakan pada akun anda untuk melakukan reset password</string>
+    <string name="send_link_verif">Kirim Link Verifikasi</string>
+    <string name="verif_instruction">Silahkan masukkan email terdaftar untuk mendapatkan link verifikasi</string>
+
+    <string name="verification">Verifikasi Email</string>
+    <string name="verification_sent">Link verifikasi berhasil terkirim. Silahkan cek email anda.</string>
+    <string name="select_date">Pilih tanggal</string>
 </resources>

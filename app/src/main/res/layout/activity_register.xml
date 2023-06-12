@@ -119,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/gender_male"
+                android:checked="true"
                 android:textColor="@color/dark_purple_main" />
 
             <RadioButton
@@ -163,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="Date" />
+                android:text="@string/select_date" />
         </LinearLayout>
 
         <TextView
@@ -176,7 +177,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ll_date" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_select_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -187,13 +188,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_pp"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
             android:visibility="gone"
             android:src="@drawable/user_ph"
-            app:layout_constraintBottom_toBottomOf="@+id/button"
-            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_select_photo"
+            app:layout_constraintStart_toEndOf="@+id/btn_select_photo"
             app:layout_constraintTop_toTopOf="@+id/textView13" />
 
         <com.google.android.material.button.MaterialButton
@@ -208,7 +210,7 @@
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button">
+            app:layout_constraintTop_toBottomOf="@+id/btn_select_photo">
 
 
         </com.google.android.material.button.MaterialButton>

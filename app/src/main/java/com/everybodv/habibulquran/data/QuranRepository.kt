@@ -228,9 +228,9 @@ class QuranRepository private constructor(
     private val _isEnabled = MutableLiveData<Boolean>(true)
     val isEnabled: LiveData<Boolean> = _isEnabled
 
-    private val _regMsg = MutableLiveData<Event<String>>()
-    val regMsg: LiveData<Event<String>>
-        get() = _regMsg
+//    private val _regMsg = MutableLiveData<Event<String>>()
+//    val regMsg: LiveData<Event<String>>
+//        get() = _regMsg
 
     private val _logMsg = MutableLiveData<Event<String>>()
     val logMsg: LiveData<Event<String>>
@@ -300,10 +300,12 @@ class QuranRepository private constructor(
                     call: Call<GeneralResponse>,
                     response: Response<GeneralResponse>
                 ) {
+                    _isEnabled.value = true
+                    _isLoading.value = false
                     if (response.isSuccessful) {
                         _registerData.postValue(response.body())
                     } else {
-                        Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.message()}")
+                        Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.body()?.message}")
                         _logMsg.value = Event("")
                     }
                 }
@@ -315,6 +317,9 @@ class QuranRepository private constructor(
             })
         return _registerData
     }
+
+    private val _forgotData = MutableLiveData<GeneralResponse>()
+    val forgotData: LiveData<GeneralResponse> = _forgotData
 
     fun forgotResetPass(email: String) {
         _isEnabled.value = false
@@ -329,7 +334,7 @@ class QuranRepository private constructor(
                     _isEnabled.value = true
                     _isLoading.value = false
                     if (response.isSuccessful) {
-                        _logMsg.value = Event("")
+                        _forgotData.value = response.body()
                     } else {
                         Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.message()}")
                         _logMsg.value = Event("")
@@ -342,6 +347,9 @@ class QuranRepository private constructor(
 
             })
     }
+
+    private val _verifyResponse = MutableLiveData<GeneralResponse>()
+    val verifyResponse: LiveData<GeneralResponse> = _verifyResponse
 
     fun verifyEmail(email: String) {
         _isEnabled.value = false
@@ -356,7 +364,7 @@ class QuranRepository private constructor(
                     _isEnabled.value = true
                     _isLoading.value = false
                     if (response.isSuccessful) {
-                        _logMsg.value = Event("")
+                        _verifyResponse.value = response.body()
                     } else {
                         Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.message()}")
                         _logMsg.value = Event("")
