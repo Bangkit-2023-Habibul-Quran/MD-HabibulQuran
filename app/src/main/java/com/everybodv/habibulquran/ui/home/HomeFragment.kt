@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.model.SurahFakeDataSource
 import com.everybodv.habibulquran.databinding.FragmentHomeBinding
+import com.everybodv.habibulquran.ui.auth.AuthViewModel
 import com.everybodv.habibulquran.ui.makhraj.MakhrajMenuActivity
 import com.everybodv.habibulquran.ui.makhraj.MakhrajViewModel
 import com.everybodv.habibulquran.ui.quran.QuranViewModel
@@ -48,6 +49,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity().application)
+        val authViewModel: AuthViewModel by viewModels { factory }
         val makhrajViewModel : MakhrajViewModel by viewModels { factory }
         val quranViewModel: QuranViewModel by viewModels { factory }
 
@@ -68,7 +70,9 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
+        authViewModel.loginData.observe(viewLifecycleOwner) { loginData ->
+            binding.tvWelcomeUser.text = "Ahlan, ${loginData.name}"
+        }
 
         makhrajViewModel.getAllHijaiyah()
         makhrajViewModel.listHijaiyah.observe(viewLifecycleOwner) { listHijaiyah ->

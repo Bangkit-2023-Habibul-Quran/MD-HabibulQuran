@@ -8,13 +8,13 @@ import com.google.gson.annotations.SerializedName
 data class QuranPredictResponse(
 
 	@field:SerializedName("Predicted transcription")
-	val predictedTranscription: String,
+	val predictedTranscription: String? = null,
 
 	@field:SerializedName("Rating")
-	val rating: Int,
+	val rating: Int? = null,
 
 	@field:SerializedName("error")
-	val error: Boolean,
+	val error: Boolean? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.everybodv.habibulquran.data.remote.response.*
 import com.everybodv.habibulquran.data.remote.retrofit.AuthConfig
+import com.everybodv.habibulquran.data.remote.retrofit.HijaiyahPredictConfig
 import com.everybodv.habibulquran.data.remote.retrofit.QuranConfig
 import com.everybodv.habibulquran.data.remote.retrofit.QuranPredictConfig
 import com.everybodv.habibulquran.utils.AppExecutors
@@ -190,10 +191,43 @@ class QuranRepository private constructor(
         return _listHijaiyah
     }
 
-    private val _tadarusPredictData = MutableLiveData<QuranPredictResponse>()
-    val tadarusPredictData: LiveData<QuranPredictResponse> = _tadarusPredictData
+    private val _tadarusPredictData = MutableLiveData<QuranPredictResponse?>()
+    val tadarusPredictData: LiveData<QuranPredictResponse?> = _tadarusPredictData
 
-    fun getTadarusPredict(audioFile: MultipartBody.Part, originalText: RequestBody): LiveData<QuranPredictResponse> {
+    fun clearTadarusDataPredict(): LiveData<QuranPredictResponse?> {
+        if (_tadarusPredictData.value != null) {
+            val tadarus = QuranPredictResponse(error = false, rating = null)
+            _tadarusPredictData.value = tadarus
+        }
+        return _tadarusPredictData
+    }
+
+    private val _hijaiyahPredictData = MutableLiveData<HijaiyahPredictResponse>()
+    val hijaiyahPredictData: LiveData<HijaiyahPredictResponse> = _hijaiyahPredictData
+    fun getMakhrajPredict(audioFile: MultipartBody.Part): LiveData<HijaiyahPredictResponse> {
+        _isLoading.value = true
+        HijaiyahPredictConfig.getHijaiyahPredictService().predictHijaiyah(audioFile)
+            .enqueue(object : Callback<HijaiyahPredictResponse> {
+                override fun onResponse(
+                    call: Call<HijaiyahPredictResponse>,
+                    response: Response<HijaiyahPredictResponse>
+                ) {
+                    _isLoading.value = false
+                    if (response.isSuccessful) {
+                        _hijaiyahPredictData.postValue(response.body())
+                    } else {
+                        Log.e(Const.TAG_QURAN_REPO, "onFailure: ${response.body()?.message}")
+                    }
+                }
+
+                override fun onFailure(call: Call<HijaiyahPredictResponse>, t: Throwable) {
+                    Log.e(Const.TAG_QURAN_REPO, "onFailure: ${t.message}")
+                }
+
+            })
+        return _hijaiyahPredictData
+    }
+    fun getTadarusPredict(audioFile: MultipartBody.Part, originalText: RequestBody): LiveData<QuranPredictResponse?> {
         _isLoading.value = true
         QuranPredictConfig.getQuranPredictService().predictTadarus(audioFile, originalText)
             .enqueue(object : Callback<QuranPredictResponse> {
@@ -205,7 +239,7 @@ class QuranRepository private constructor(
                     if (response.isSuccessful) {
                         _tadarusPredictData.postValue(response.body())
                     } else {
-                        Log.e(Const.TAG_QURAN_REPO, "onFailure: ${response.message()}")
+                        Log.e(Const.TAG_QURAN_REPO, "onFailure: ${response.body()?.message}")
                     }
                 }
 

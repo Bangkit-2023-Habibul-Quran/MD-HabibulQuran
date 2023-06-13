@@ -18,7 +18,7 @@ class TadarusViewModel(private val quranRepository: QuranRepository) : ViewModel
 
     val listSurahTest: LiveData<List<Data>> = quranRepository.listSurahTest
     val isLoading: LiveData<Boolean> = quranRepository.isLoading
-    val tadarusPredictResponse: LiveData<QuranPredictResponse> = quranRepository.tadarusPredictData
+    val tadarusPredictResponse: LiveData<QuranPredictResponse?> = quranRepository.tadarusPredictData
 
     private val _isRecording = MutableLiveData<Boolean>(false)
     val isRecording: LiveData<Boolean> = _isRecording
@@ -31,6 +31,8 @@ class TadarusViewModel(private val quranRepository: QuranRepository) : ViewModel
     fun getTadarusPredict(audioFile: MultipartBody.Part, originalText: RequestBody) {
         quranRepository.getTadarusPredict(audioFile, originalText)
     }
+
+    fun clearTadarusDataPredict() = quranRepository.clearTadarusDataPredict()
 
     fun startRecording(button: ImageButton): LiveData<Boolean> {
         button.setImageResource(R.drawable.ic_stop_40)

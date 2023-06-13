@@ -1,17 +1,14 @@
 package com.everybodv.habibulquran.data.remote.retrofit
 
 import androidx.viewbinding.BuildConfig
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class QuranPredictConfig {
+class HijaiyahPredictConfig {
     companion object {
-        fun getQuranPredictService(): QuranPredictApiService {
+        fun getHijaiyahPredictService(): HijaiyahPredictApiService {
             val loggingInterceptor = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
@@ -20,17 +17,13 @@ class QuranPredictConfig {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .addNetworkInterceptor(Interceptor { chain ->
-                    val request: Request = chain.request().newBuilder().addHeader("Accept-Encoding", "identity").build()
-                    chain.proceed(request)
-                })
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://habibultes-k3rttur3ia-et.a.run.app/")
+                .baseUrl("https://habibulhijaiyah-k3rttur3ia-et.a.run.app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
-            return retrofit.create(QuranPredictApiService::class.java)
+            return retrofit.create(HijaiyahPredictApiService::class.java)
         }
     }
 }

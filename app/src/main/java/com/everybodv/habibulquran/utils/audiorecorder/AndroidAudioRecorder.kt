@@ -3,6 +3,7 @@ package com.everybodv.habibulquran.utils.audiorecorder
 import android.content.Context
 import android.media.MediaRecorder
 import android.os.Build
+import androidx.annotation.RequiresApi
 import java.io.File
 import java.io.FileOutputStream
 
@@ -17,6 +18,7 @@ class AndroidAudioRecorder(
             MediaRecorder(context)
         else MediaRecorder()
     }
+
 
     override fun start(outputFile: File) {
         createRecorder().apply {
@@ -33,6 +35,8 @@ class AndroidAudioRecorder(
             recorder = this
         }
     }
+
+
 
     override fun stop() {
         recorder?.stop()

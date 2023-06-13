@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://packagecloud.io/hernandazevedo/androidmp3recorder/maven2"
+        }
     }
 }
 rootProject.name = "Habibul Quran"
