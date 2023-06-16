@@ -2,6 +2,10 @@
 ---
 This repository contains parts of the Mobile Development in the Habibul Quran application.
 
+### Mobile Development Team 
+| [<img src="https://avatars.githubusercontent.com/u/70849903?v=4" width="75px;"/><br /><sub>Utsman Abudrrahman</sub>](https://github.com/utsmanabd)<br /> |
+| :---: |
+
 ### Feature
 ---
 * **Splash Screen,** This app has a splashcreen that is displayed before entering the main page..
