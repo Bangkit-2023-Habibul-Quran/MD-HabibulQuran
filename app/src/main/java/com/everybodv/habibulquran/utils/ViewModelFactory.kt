@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.everybodv.habibulquran.data.QuranRepository
 import com.everybodv.habibulquran.ui.auth.AuthViewModel
 import com.everybodv.habibulquran.ui.makhraj.MakhrajViewModel
+import com.everybodv.habibulquran.ui.profile.ProfileViewModel
 import com.everybodv.habibulquran.ui.quran.QuranViewModel
 import com.everybodv.habibulquran.ui.tadarus.TadarusViewModel
 
@@ -24,6 +25,9 @@ class ViewModelFactory (private val quranRepository: QuranRepository): ViewModel
         }
         if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
             return AuthViewModel(quranRepository) as T
+        }
+        if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+            return ProfileViewModel(quranRepository) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

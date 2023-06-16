@@ -70,14 +70,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9">
 
         <RadioButton
-            android:id="@+id/rb_male"
+            android:id="@+id/Lakilaki"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/dark_purple_main"
             android:text="@string/gender_male" />
 
         <RadioButton
-            android:id="@+id/rb_female"
+            android:id="@+id/Perempuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -95,6 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -113,21 +114,34 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_marginStart="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:text="@string/masukkan_tanggal_lahir" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
         android:layout_marginBottom="32dp"
         android:text="@string/save_changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

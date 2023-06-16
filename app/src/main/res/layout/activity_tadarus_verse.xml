@@ -24,6 +24,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tv_progress_verse"
         app:layout_constraintStart_toStartOf="@+id/tv_surah_verse"
         app:layout_constraintTop_toTopOf="@+id/tv_progress_verse" />
@@ -35,6 +36,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/makhraj_progress_dummy"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/progressBar2"
         app:layout_constraintTop_toBottomOf="@+id/tv_surah_verse" />
 

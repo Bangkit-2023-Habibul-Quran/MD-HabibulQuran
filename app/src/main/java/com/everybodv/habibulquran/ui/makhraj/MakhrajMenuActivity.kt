@@ -3,13 +3,10 @@ package com.everybodv.habibulquran.ui.makhraj
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
-import com.everybodv.habibulquran.data.model.HijaiyahDataSource
 import com.everybodv.habibulquran.databinding.ActivityMakhrajMenuBinding
-import com.everybodv.habibulquran.ui.quran.QuranViewModel
 import com.everybodv.habibulquran.utils.ViewModelFactory
 import com.everybodv.habibulquran.utils.showLoading
 

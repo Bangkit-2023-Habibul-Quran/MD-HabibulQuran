@@ -4,11 +4,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.everybodv.habibulquran.data.model.Quran
-import com.everybodv.habibulquran.data.model.SurahAyat
 import com.everybodv.habibulquran.data.remote.response.VersesItem
 import com.everybodv.habibulquran.databinding.ItemTadarusAyatCardBinding
-import com.everybodv.habibulquran.ui.tadarus.TadarusMenuAdapter
 import com.everybodv.habibulquran.ui.tadarus.verse.detail.DetailTadarusActivity
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.setSafeOnClickListener

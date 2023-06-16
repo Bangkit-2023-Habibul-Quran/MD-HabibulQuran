@@ -2,6 +2,7 @@ package com.everybodv.habibulquran.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.everybodv.habibulquran.data.remote.response.*
 import com.everybodv.habibulquran.data.remote.retrofit.AuthConfig
@@ -172,7 +173,7 @@ class QuranRepository private constructor(
                             appExecutors.diskIO.execute {
                                 hijaiyah?.forEach {
                                     val hijaiyahData =
-                                        DataItem(it.arabic, it.pronounciation, it.audio)
+                                        DataItem(it.arabic, it.pronounciation, it.audio, it.prediction, it.available)
                                     hijaiyahResponse.add(hijaiyahData)
                                 }
                                 _listHijaiyah.postValue(hijaiyahResponse)
@@ -204,6 +205,14 @@ class QuranRepository private constructor(
 
     private val _hijaiyahPredictData = MutableLiveData<HijaiyahPredictResponse>()
     val hijaiyahPredictData: LiveData<HijaiyahPredictResponse> = _hijaiyahPredictData
+
+    fun clearMakhrajDataPredict(): LiveData<HijaiyahPredictResponse> {
+        if (_hijaiyahPredictData.value != null) {
+            val makhraj = HijaiyahPredictResponse(predictedLabel = null)
+            _hijaiyahPredictData.postValue(makhraj)
+        }
+        return _hijaiyahPredictData
+    }
     fun getMakhrajPredict(audioFile: MultipartBody.Part): LiveData<HijaiyahPredictResponse> {
         _isLoading.value = true
         HijaiyahPredictConfig.getHijaiyahPredictService().predictHijaiyah(audioFile)
@@ -412,6 +421,8 @@ class QuranRepository private constructor(
             })
     }
 
+    private val _editData = MutableLiveData<GeneralResponse>()
+    val editData: LiveData<GeneralResponse> = _editData
     fun editProfile(
         id: String,
         name: String,
@@ -421,6 +432,8 @@ class QuranRepository private constructor(
         birthMonth: Int,
         birthDay: Int
     ) {
+        _isLoading.value = true
+        _isEnabled.value = false
         AuthConfig.getAuthService()
             .editProfile(id, id, name, email, gender, birthYear, birthMonth, birthDay)
             .enqueue(object : Callback<GeneralResponse> {
@@ -428,11 +441,14 @@ class QuranRepository private constructor(
                     call: Call<GeneralResponse>,
                     response: Response<GeneralResponse>
                 ) {
+                    _isEnabled.value = true
+                    _isLoading.value = false
                     if (response.isSuccessful) {
+                        _editData.value = response.body()
+
                         _logMsg.value = Event("")
                     } else {
-                        Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.message()}")
-                        _logMsg.value = Event("")
+                        Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.body()?.message}")
                     }
                 }
 
@@ -441,6 +457,53 @@ class QuranRepository private constructor(
                 }
 
             })
+    }
+
+    private val _userData = MediatorLiveData<UserData?>()
+    val userData: LiveData<UserData?> = _userData
+
+    fun clearDetailUserData(): LiveData<UserData?> {
+        if (_userData.value != null) {
+            _userData.value = null
+        }
+        return _userData
+    }
+    fun getDetailUser(userId: String): LiveData<UserData?> {
+        _isLoading.value = true
+        if (_userData.value != null) {
+            _isLoading.value = false
+        } else {
+            AuthConfig.getAuthService().detailUser(userId)
+                .enqueue(object : Callback<DetailUserResponse> {
+                    override fun onResponse(
+                        call: Call<DetailUserResponse>,
+                        response: Response<DetailUserResponse>
+                    ) {
+                        _isLoading.value = false
+                        if (response.isSuccessful) {
+                            _userData.value = response.body()?.user
+                        } else {
+                            Log.e(Const.TAG_AUTH_REPO, "onFailure: ${response.message()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
+                        Log.e(Const.TAG_AUTH_REPO, "onFailure: ${t.message}")
+                    }
+
+                })
+        }
+        return _userData
+    }
+
+    fun updateUserData(name: String, email: String, birthDay: Int, gender: String, birthYear: Int, birthMonth: Int, image: String): LiveData<UserData?> {
+        if (_userData.value != null) {
+            val bm = if (birthMonth < 10) "0${birthMonth}" else birthMonth.toString()
+            val bd = if (birthDay <10) "0${birthDay}" else birthDay.toString()
+            val birthDate = "${birthYear}-${bm}-${bd}T00:00:00.000Z"
+            _userData.value = UserData(name = name, email = email, birthdate = birthDate, jenisKelamin = gender, image = image)
+        } else Log.e(Const.TAG_QURAN_REPO, "Failed to update")
+        return _userData
     }
 
     companion object {

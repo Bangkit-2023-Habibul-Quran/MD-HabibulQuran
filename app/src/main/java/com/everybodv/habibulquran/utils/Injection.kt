@@ -1,6 +1,5 @@
 package com.everybodv.habibulquran.utils
 
-import android.content.Context
 import com.everybodv.habibulquran.data.QuranRepository
 
 object Injection {

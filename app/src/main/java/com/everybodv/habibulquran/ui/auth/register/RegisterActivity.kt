@@ -2,7 +2,6 @@ package com.everybodv.habibulquran.ui.auth.register
 
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
-import android.net.IpSecManager.SecurityParameterIndex
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,13 +10,11 @@ import androidx.activity.viewModels
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.databinding.ActivityRegisterBinding
 import com.everybodv.habibulquran.ui.auth.AuthViewModel
-import com.everybodv.habibulquran.ui.tadarus.TadarusViewModel
 import com.everybodv.habibulquran.ui.utility.DatePickerFragment
 import com.everybodv.habibulquran.utils.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
@@ -29,7 +26,7 @@ class RegisterActivity : AppCompatActivity(), DatePickerFragment.DialogDateListe
 
     private var photoFile: File? = null
     private var date: String? = null
-    private var gender: String = Const.DEFAULT_GENDER
+    private var gender: String = Const.MALE_GENDER
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -55,7 +52,7 @@ class RegisterActivity : AppCompatActivity(), DatePickerFragment.DialogDateListe
 
         binding.radioGroup2.setOnCheckedChangeListener { group, checkedId ->
             gender = if (R.id.rb_male == checkedId) {
-                Const.DEFAULT_GENDER
+                Const.MALE_GENDER
             } else {
                 Const.FEMALE_GENDER
             }

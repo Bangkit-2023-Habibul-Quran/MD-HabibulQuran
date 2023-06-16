@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
-import com.everybodv.habibulquran.data.model.SurahFakeDataSource
 import com.everybodv.habibulquran.databinding.ActivityTadarusMenuBinding
 import com.everybodv.habibulquran.utils.ViewModelFactory
 import com.everybodv.habibulquran.utils.showLoading

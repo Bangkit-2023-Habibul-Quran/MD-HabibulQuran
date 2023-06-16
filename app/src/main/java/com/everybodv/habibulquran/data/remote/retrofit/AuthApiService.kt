@@ -1,7 +1,9 @@
 package com.everybodv.habibulquran.data.remote.retrofit
 
+import com.everybodv.habibulquran.data.remote.response.DetailUserResponse
 import com.everybodv.habibulquran.data.remote.response.GeneralResponse
 import com.everybodv.habibulquran.data.remote.response.LoginResponse
+import com.everybodv.habibulquran.data.remote.response.UserData
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -58,5 +60,11 @@ interface AuthApiService {
         @Field("birthdateMonth") bdMonth: Int,
         @Field("birthdateDay") bdDay: Int
     ): Call<GeneralResponse>
+
+    @POST("data")
+    @FormUrlEncoded
+    fun detailUser(
+        @Field("user_id") userId: String
+    ): Call<DetailUserResponse>
 
 }

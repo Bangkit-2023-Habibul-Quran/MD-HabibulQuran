@@ -13,7 +13,6 @@ import com.everybodv.habibulquran.data.remote.response.VersesItem
 
 class QuranViewModel(private val quranRepository: QuranRepository) : ViewModel() {
 
-//    val listSurah: LiveData<List<Data>> = quranRepository.listSurah
     val isLoading: LiveData<Boolean> = quranRepository.isLoading
 
     val surahList: LiveData<List<Data>> = quranRepository.surahList
@@ -23,8 +22,6 @@ class QuranViewModel(private val quranRepository: QuranRepository) : ViewModel()
     private val _isPlaying = MutableLiveData<Boolean>(false)
     val isPlaying: LiveData<Boolean> = _isPlaying
 
-
-//    fun getAllSurah(): LiveData<List<Data>> = quranRepository.getAllSurah()
     fun getListSurah(): LiveData<List<Data>> = quranRepository.getListSurah()
     fun getAyatBySurahId(verseNumber: Int): LiveData<List<VersesItem>> = quranRepository.getAyatBySurahId(verseNumber)
     fun getTadarusTest(): LiveData<List<Data>> = quranRepository.getTadarusTest()

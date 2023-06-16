@@ -23,14 +23,15 @@ class DetailSurahActivity : AppCompatActivity() {
         binding = ActivityDetailSurahBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
-
         val factory: ViewModelFactory = ViewModelFactory.getInstance(application)
         val quranViewModel : QuranViewModel by viewModels { factory }
 
         val detail = intent.getParcelableExtra<Data>(Const.EXTRA_SURAH) as Data
 
-        quranViewModel.isLoading.observe(this) { isLoading ->
+        supportActionBar?.title = detail.name.transliteration?.id
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+            quranViewModel.isLoading.observe(this) { isLoading ->
             showLoading(binding.loading2, isLoading)
         }
 
@@ -61,6 +62,12 @@ class DetailSurahActivity : AppCompatActivity() {
         super.onDestroy()
         if (mediaPlayer.isPlaying) mediaPlayer.stop()
         mediaPlayer.release()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        @Suppress("DEPRECATION")
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 }

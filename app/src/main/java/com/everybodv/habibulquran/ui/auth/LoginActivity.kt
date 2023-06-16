@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import com.everybodv.habibulquran.MainActivity
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.Token
+import com.everybodv.habibulquran.data.UserID
 import com.everybodv.habibulquran.data.local.AuthPreferences
+import com.everybodv.habibulquran.data.local.UserIdPreferences
 import com.everybodv.habibulquran.databinding.ActivityLoginBinding
 import com.everybodv.habibulquran.ui.auth.forgot.ForgotPasswordActivity
 import com.everybodv.habibulquran.ui.auth.register.RegisterActivity
@@ -18,7 +20,9 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var token: Token
+    private lateinit var userID: UserID
     private lateinit var authPreferences: AuthPreferences
+    private lateinit var userIdPreferences: UserIdPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +32,9 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         authPreferences = AuthPreferences(this)
+        userIdPreferences = UserIdPreferences(this)
         token = Token(authPreferences)
+        userID = UserID(userIdPreferences)
 
         val factory: ViewModelFactory = ViewModelFactory.getInstance(application)
         val authViewModel : AuthViewModel by viewModels { factory }
@@ -63,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     authViewModel.loginData.observe(this) { loginData ->
                         token.setToken(loginData.token)
+                        userID.setId(loginData.id)
                         startActivity(Intent(this, MainActivity::class.java))
                         showToast(this, "${getString(R.string.login_success)} ${loginData.name}")
                     }

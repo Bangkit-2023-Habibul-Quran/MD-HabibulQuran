@@ -3,7 +3,7 @@ package com.everybodv.habibulquran
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var authPreferences: AuthPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         token.getToken().observe(this) { token ->
             if (token == null) showToast(this, getString(R.string.session_end))
         }
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

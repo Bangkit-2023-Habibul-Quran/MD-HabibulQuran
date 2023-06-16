@@ -7,9 +7,6 @@ import android.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
-import com.everybodv.habibulquran.data.model.Quran
-import com.everybodv.habibulquran.data.model.SurahAyat
-import com.everybodv.habibulquran.data.model.SurahFakeDataSource
 import com.everybodv.habibulquran.data.remote.response.Data
 import com.everybodv.habibulquran.data.remote.response.VersesItem
 import com.everybodv.habibulquran.databinding.ActivityTadarusVerseBinding

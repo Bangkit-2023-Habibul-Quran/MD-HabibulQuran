@@ -20,6 +20,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/sholat"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,12 +28,12 @@
             android:id="@+id/tv_welcome_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:text="@string/welcome_user"
+            android:text="Selamat datang"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pray_time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tv_pray_time" />
 
         <DigitalClock
             android:id="@+id/tv_pray_time"
@@ -50,6 +51,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/pray_time_countdown"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/tv_pray_time"
             app:layout_constraintTop_toTopOf="@+id/tv_pray_time" />
 
@@ -157,17 +159,18 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="220dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:textSize="11sp"
             android:text="@string/yuk_belajar_hijaiyah"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_show_makhraj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:cornerRadius="10dp"
             android:layout_marginEnd="24dp"
             android:text="@string/show_more"
             android:fontFamily="@font/poppinsbold"
@@ -225,18 +228,19 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="220dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="@string/cek_bacaan_al_qur_an_kamu"
             android:textSize="11sp"
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_show_tadarus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
+            app:cornerRadius="10dp"
             android:fontFamily="@font/poppinsbold"
             android:text="@string/show_more"
             android:textSize="11sp"

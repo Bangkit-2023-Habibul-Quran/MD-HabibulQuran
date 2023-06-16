@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.databinding.FragmentQuranBinding
-import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.ViewModelFactory
-import com.everybodv.habibulquran.utils.showLoading
 
 class QuranFragment : Fragment() {
 

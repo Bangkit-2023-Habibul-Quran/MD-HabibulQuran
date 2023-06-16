@@ -3,7 +3,6 @@ package com.everybodv.habibulquran.ui.onboarding
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.databinding.ActivityOnBoardingBinding
 import com.everybodv.habibulquran.ui.auth.LoginActivity
 import com.everybodv.habibulquran.utils.setSafeOnClickListener

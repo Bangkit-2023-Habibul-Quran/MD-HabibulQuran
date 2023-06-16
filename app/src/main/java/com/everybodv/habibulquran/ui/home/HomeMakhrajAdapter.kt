@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.everybodv.habibulquran.data.model.Hijaiyah
 import com.everybodv.habibulquran.data.remote.response.DataItem
 import com.everybodv.habibulquran.databinding.ItemHijaiyahCardBinding
 import com.everybodv.habibulquran.ui.makhraj.detail.DetailMakhrajActivity

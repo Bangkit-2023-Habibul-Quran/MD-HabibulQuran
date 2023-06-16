@@ -1,17 +1,11 @@
 package com.everybodv.habibulquran.ui.home
 
 import android.content.Intent
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.everybodv.habibulquran.R
-import com.everybodv.habibulquran.data.model.Quran
-import com.everybodv.habibulquran.data.model.Tadarus
 import com.everybodv.habibulquran.data.remote.response.Data
-import com.everybodv.habibulquran.databinding.ItemHijaiyahCardBinding
 import com.everybodv.habibulquran.databinding.ItemTadarusHomeCardBinding
-import com.everybodv.habibulquran.ui.tadarus.TadarusMenuActivity
 import com.everybodv.habibulquran.ui.tadarus.verse.TadarusVerseActivity
 import com.everybodv.habibulquran.utils.Const
 import com.everybodv.habibulquran.utils.setSafeOnClickListener

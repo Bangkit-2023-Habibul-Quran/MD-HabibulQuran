@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatDelegate
 import com.everybodv.habibulquran.MainActivity
 import com.everybodv.habibulquran.R
 import com.everybodv.habibulquran.data.Token
@@ -20,6 +21,7 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var token: Token
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 

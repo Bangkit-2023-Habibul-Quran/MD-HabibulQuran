@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Habibul Quran</string>
-    <string name="makhraj">Makhraj</string>
+    <string name="makhraj">Hijaiyah</string>
     <string name="tadarus">Tadarus</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -29,9 +29,9 @@
     <string name="start">Mulai</string>
 
     <string name="press_again">Tekan dua kali untuk keluar</string>
-    <string name="makhraj_progress">Makhraj Progress</string>
+    <string name="makhraj_progress">Hijaiyah Progress</string>
     <string name="tadarus_progress">Tadarus Progress</string>
-    <string name="tes_makhraj">Tes Makhraj</string>
+    <string name="tes_makhraj">Tes Hijaiyah</string>
     <string name="tes_tadarus">Tes Tadarus</string>
     <string name="tilawah">Tilawah</string>
     <string name="tilawah_progress">Tilawah Progress</string>
@@ -39,16 +39,16 @@
     <string name="waktu_sholat">16:00</string>
     <string name="pray_time_countdown">-2:01:00</string>
     <string name="welcome_user">Ahlan, User</string>
-    <string name="tes_makhraj_huruf">Tes Makhraj Huruf</string>
+    <string name="tes_makhraj_huruf">Tes Hijaiyah</string>
     <string name="hijaiyah_dummy">ف</string>
     <string name="show_more">Lihat semua</string>
     <string name="yuk_belajar_hijaiyah">Yuk belajar pengucapan huruf hijaiyah</string>
     <string name="dummy_total_ayat">Total ayat: 8</string>
     <string name="total_ayat">Total ayat: %d</string>
     <string name="surah">Surah</string>
-    <string name="tes_tadarus_per_ayat">Tes Tadarus per-Ayat</string>
+    <string name="tes_tadarus_per_ayat">Tes Tadarus</string>
     <string name="cek_bacaan_al_qur_an_kamu">Cek bacaan Al-Qur\'an kamu</string>
-    <string name="belajar_makhraj">Belajar Makhraj</string>
+    <string name="belajar_makhraj">Belajar Hijaiyah</string>
     <string name="makhraj_progress_dummy">0/28</string>
     <string name="pronounce_dummy">fa</string>
     <string name="microphone">Microphone</string>
@@ -125,4 +125,6 @@
     <string name="verification">Verifikasi Email</string>
     <string name="verification_sent">Link verifikasi berhasil terkirim. Silahkan cek email anda.</string>
     <string name="select_date">Pilih tanggal</string>
+
+    <string name="success_edit">Berhasil mengedit profil</string>
 </resources>

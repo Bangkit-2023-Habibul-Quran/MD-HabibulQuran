@@ -15,8 +15,6 @@ import com.everybodv.habibulquran.utils.Const.Companion.FILENAME_FORMAT
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 
 val timeStamp: String = SimpleDateFormat(
@@ -98,7 +96,13 @@ fun reduceFileImage(file: File): File {
     return file
 }
 
+fun convertDateFormat(dateString: String): String? {
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
+    val date = inputFormat.parse(dateString)
+    return date?.let { outputFormat.format(it) }
+}
 
 object ActivityUtils {
     fun getOnBackPressedCallbackWithInterval(

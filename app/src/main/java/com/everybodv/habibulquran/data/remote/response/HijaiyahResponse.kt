@@ -33,5 +33,11 @@ data class DataItem(
 	val pronounciation: String,
 
 	@field:SerializedName("audio")
-	val audio: String
+	val audio: String,
+
+	@field:SerializedName("prediction")
+	val prediction: String,
+
+	@field:SerializedName("available")
+	val available: Boolean
 ) : Parcelable

@@ -1,13 +1,9 @@
 package com.everybodv.habibulquran.ui.tadarus.verse.detail
 
-import android.content.Context
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.preference.PreferenceManager
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -17,8 +13,6 @@ import com.everybodv.habibulquran.databinding.ActivityDetailTadarusBinding
 import com.everybodv.habibulquran.databinding.FragmentResultTadarusDialogBinding
 import com.everybodv.habibulquran.ui.tadarus.TadarusViewModel
 import com.everybodv.habibulquran.utils.*
-import com.everybodv.habibulquran.utils.audiorecorder.AndroidAudioPlayer
-import com.everybodv.habibulquran.utils.audiorecorder.AndroidAudioRecorder
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.hernandazevedo.androidmp3recorder.MP3Recorder
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,7 +29,6 @@ class DetailTadarusActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var suratVerse: String
 
-    private val player = AndroidAudioPlayer(this)
     private var audioFile: File? = null
 
     private var mRecorder: MP3Recorder? = null
@@ -54,8 +47,6 @@ class DetailTadarusActivity : AppCompatActivity() {
         val tadarusViewModel : TadarusViewModel by viewModels { factory }
 
         val detail = intent.getParcelableExtra<VersesItem>(Const.EXTRA_VERSE_DETAIL) as VersesItem
-
-        setSurahVerseString(detail)
 
         binding.tvAyatSurah.text = detail.text.arab
 
@@ -138,6 +129,10 @@ class DetailTadarusActivity : AppCompatActivity() {
                                         tvCorrect.text = getString(R.string.three_star_title)
                                         showContent(animationThreeStar)
                                         tvDescCorrect.text = getString(R.string.three_star_desc)
+                                        btnContinue.setSafeOnClickListener {
+                                            dialog.dismiss()
+                                            tadarusViewModel.clearTadarusDataPredict()
+                                        }
                                         dialog.show()
                                     }
                                 }
@@ -146,6 +141,10 @@ class DetailTadarusActivity : AppCompatActivity() {
                                         tvCorrect.text = getString(R.string.four_star_title)
                                         showContent(animationFourStar)
                                         tvDescCorrect.text = getString(R.string.four_star_desc)
+                                        btnContinue.setSafeOnClickListener {
+                                            dialog.dismiss()
+                                            tadarusViewModel.clearTadarusDataPredict()
+                                        }
                                         dialog.show()
                                     }
                                 }
@@ -154,6 +153,10 @@ class DetailTadarusActivity : AppCompatActivity() {
                                         tvCorrect.text = getString(R.string.five_star_title)
                                         showContent(animationFiveStar)
                                         tvDescCorrect.text = getString(R.string.five_star_desc)
+                                        btnContinue.setSafeOnClickListener {
+                                            dialog.dismiss()
+                                            tadarusViewModel.clearTadarusDataPredict()
+                                        }
                                         dialog.show()
                                     }
                                 }
@@ -212,18 +215,6 @@ class DetailTadarusActivity : AppCompatActivity() {
             }
 
         }
-    }
-
-    private fun setSurahVerseString(detail: VersesItem) {
-        val verse = detail.number.inSurah
-        val verseStr = if (verse < 10) "00$verse" else if (verse < 100) "0$verse" else verse.toString()
-
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val surahNum = prefs.getInt(Const.AYAT_NUMBER, 1)
-
-        val surahNumStr = if (surahNum < 100) "0$surahNum" else surahNum.toString()
-
-        suratVerse = surahNumStr + verseStr
     }
 
     override fun onDestroy() {

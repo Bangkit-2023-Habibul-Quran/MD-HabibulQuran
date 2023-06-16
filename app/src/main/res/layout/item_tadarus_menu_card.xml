@@ -30,6 +30,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/tv_surah_tadarus"
             app:layout_constraintTop_toBottomOf="@+id/tv_surah_tadarus" />
 
@@ -40,6 +41,7 @@
             android:layout_marginStart="8dp"
             android:text="0/8 ayat selesai"
             android:textSize="11sp"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/pb_ayat_progress"
             app:layout_constraintTop_toTopOf="@+id/pb_ayat_progress" />
 

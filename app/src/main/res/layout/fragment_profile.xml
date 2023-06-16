@@ -46,11 +46,32 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="32dp"
+            android:background="@drawable/oval_shimmer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/onboarding_2"
             android:contentDescription="@string/profile_picture" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/shimmer_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/oval_shimmer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/profile_picture" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
 
         <TextView
             android:id="@+id/textView8"
@@ -107,16 +128,16 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textStyle="bold"
-            android:text="@string/username_dummy"
+            android:text=""
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="@string/email_dummy"
+            android:text=""
             app:layout_constraintStart_toStartOf="@+id/tv_user_name"
             app:layout_constraintTop_toTopOf="@+id/tv_title_email" />
 
@@ -125,8 +146,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="@string/birthdate_dummy"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
+            android:text=""
+            app:layout_constraintStart_toStartOf="@+id/tv_email"
             app:layout_constraintTop_toTopOf="@+id/tv_title_birthdate" />
 
         <TextView
@@ -134,19 +155,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="@string/gender_female"
+            android:text=""
             app:layout_constraintStart_toStartOf="@+id/tv_user_birthdate"
             app:layout_constraintTop_toTopOf="@+id/tv_title_gender" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_edit"
+            app:cornerRadius="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/edit_profile"
+            android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_gender" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:lottie_rawRes="@raw/loading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

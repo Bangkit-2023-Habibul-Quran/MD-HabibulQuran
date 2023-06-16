@@ -8,21 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.everybodv.habibulquran.R
-import com.everybodv.habibulquran.data.model.SurahFakeDataSource
+import com.everybodv.habibulquran.data.UserID
+import com.everybodv.habibulquran.data.local.UserIdPreferences
 import com.everybodv.habibulquran.databinding.FragmentHomeBinding
-import com.everybodv.habibulquran.ui.auth.AuthViewModel
 import com.everybodv.habibulquran.ui.makhraj.MakhrajMenuActivity
 import com.everybodv.habibulquran.ui.makhraj.MakhrajViewModel
+import com.everybodv.habibulquran.ui.profile.ProfileViewModel
 import com.everybodv.habibulquran.ui.quran.QuranViewModel
 import com.everybodv.habibulquran.ui.tadarus.TadarusMenuActivity
-import com.everybodv.habibulquran.utils.ViewModelFactory
-import com.everybodv.habibulquran.utils.addOnBackPressedCallbackWithInterval
-import com.everybodv.habibulquran.utils.setSafeOnClickListener
-import com.everybodv.habibulquran.utils.showToast
+import com.everybodv.habibulquran.utils.*
 
 class HomeFragment : Fragment() {
 
@@ -31,8 +28,6 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private val tadarusList = SurahFakeDataSource.surah
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,9 +44,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity().application)
-        val authViewModel: AuthViewModel by viewModels { factory }
         val makhrajViewModel : MakhrajViewModel by viewModels { factory }
         val quranViewModel: QuranViewModel by viewModels { factory }
+        val profileViewModel: ProfileViewModel by viewModels { factory }
+
+        val userIdPreferences = UserIdPreferences(requireContext())
+        val userID = UserID(userIdPreferences)
 
         val layout = GridLayoutManager(requireActivity(), 2, LinearLayoutManager.HORIZONTAL, false)
 
@@ -70,8 +68,17 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        authViewModel.loginData.observe(viewLifecycleOwner) { loginData ->
-            binding.tvWelcomeUser.text = "Ahlan, ${loginData.name}"
+
+        profileViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) hideContent(binding.tvWelcomeUser) else showContent(binding.tvWelcomeUser)
+        }
+
+        userID.getId().observe(viewLifecycleOwner) { id ->
+            profileViewModel.getDetailUser(id)
+        }
+
+        profileViewModel.userData.observe(viewLifecycleOwner) { user ->
+            binding.tvWelcomeUser.text = "Ahlan, ${user?.name}"
         }
 
         makhrajViewModel.getAllHijaiyah()
