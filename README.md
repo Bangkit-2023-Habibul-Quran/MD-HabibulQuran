@@ -37,7 +37,7 @@ This repository contains parts of the Mobile Development in the Habibul Quran ap
 * Installation
     * Clone this repostory and import to Android Studio
       ```java
-      https://github.com/C22-PS165-Heal-Go/HnG-Android.git
+      https://github.com/Bangkit-2023-Habibul-Quran/MD-HabibulQuran.git
       ```
 ### App Demo
 ---
